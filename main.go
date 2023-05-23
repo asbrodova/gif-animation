@@ -18,7 +18,14 @@ const (
 )
 
 func main() {
-	render(os.Stdout)
+	file, err := os.Create("my-go-image.gif")
+
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	render(file)
 }
 
 func render(out io.Writer) {
